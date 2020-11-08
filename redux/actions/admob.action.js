@@ -1,4 +1,5 @@
 import { AD_OFF, AD_ON } from "../constant";
+import AsyncStorage from '@react-native-community/async-storage';
 export const ToggleAdOn = () => ({
   type: AD_ON,
 });

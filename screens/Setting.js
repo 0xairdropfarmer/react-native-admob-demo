@@ -30,7 +30,7 @@ export default ({ navigation }) => {
   };
   const initRewardAds = async () => {
     // Display a rewarded ad
-    await AdMobRewarded.setAdUnitID("ca-app-pub-2547344479047582/1613609939"); // Test ID, Replace with your-admob-unit-id
+    await AdMobRewarded.setAdUnitID("ca-app-pub-2547344479047582/6388494355"); // Test ID, Replace with your-admob-unit-id
     await AdMobRewarded.requestAdAsync();
     await AdMobRewarded.showAdAsync();
     AdMobRewarded.addEventListener("rewardedVideoDidRewardUser", () => {
