@@ -11,10 +11,9 @@ import {
 } from "react-native-paper";
 import {
   AdMobBanner,
-  AdMobRewarded,
   setTestDeviceIDAsync,
 } from "expo-ads-admob";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 const Home = () => {
   const admobReducer = useSelector(({ admobReducer }) => admobReducer);
   React.useEffect(() => {
@@ -41,7 +40,7 @@ const Home = () => {
         >
           <AdMobBanner
             bannerSize="smartBanner"
-            adUnitID="ca-app-pub-2547344479047582/1964568575" // Test ID, Replace with your-admob-unit-id
+            adUnitID="ca-app-pub-2547344479047582/6124133064" // Test ID, Replace with your-admob-unit-id
             servePersonalizedAds // true or false
             onDidFailToReceiveAdWithError={(e) => console.log(e)}
           />

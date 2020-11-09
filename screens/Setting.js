@@ -24,6 +24,9 @@ export default ({ navigation }) => {
   React.useEffect(() => {
     initAdmob();
     console.log(admobReducer.ad_status);
+    return()=>{
+      AdMobRewarded.removeAllListeners();
+    }
   }, []);
   const initAdmob = async () => {
     await setTestDeviceIDAsync("EMULATOR");
@@ -32,7 +35,7 @@ export default ({ navigation }) => {
     // Display a rewarded ad
     await AdMobRewarded.setAdUnitID("ca-app-pub-2547344479047582/6388494355"); // Test ID, Replace with your-admob-unit-id
     await AdMobRewarded.requestAdAsync();
-    await AdMobRewarded.showAdAsync();
+    
     AdMobRewarded.addEventListener("rewardedVideoDidRewardUser", () => {
       console.log("rewardedVideoDidRewardUser");
       dispatch(admobActions.ToggleAds(false));
@@ -49,6 +52,7 @@ export default ({ navigation }) => {
     AdMobRewarded.addEventListener("rewardedVideoDidClose", () => {
       setModalVisible(false);
     });
+    await AdMobRewarded.showAdAsync();
   };
   return (
     <View style={{ flex: 1 }}>
@@ -97,14 +101,11 @@ export default ({ navigation }) => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Title style={styles.modalText}>
-              Watch Video Ads for paused all ads for 6 hours
+              Watch Video Ads for remove all ads
             </Title>
 
             <TouchableOpacity
@@ -114,6 +115,14 @@ export default ({ navigation }) => {
               }}
             >
               <Text style={styles.textStyle}>Watch Ads</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ ...styles.openButton, backgroundColor: "#F16334" }}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            >
+              <Text style={styles.textStyle}>Nope</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -146,6 +155,7 @@ const styles = StyleSheet.create({
   },
   openButton: {
     backgroundColor: "#F194FF",
+    marginTop:10,
     borderRadius: 20,
     padding: 10,
     elevation: 2,
